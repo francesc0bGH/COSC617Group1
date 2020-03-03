@@ -1,2 +1,3 @@
 # COSC617Group1
-Group 1 COSC Project
+## COSC617: Advanced Web Development
+### 2Group 1 Project
