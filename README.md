@@ -1,3 +1,11 @@
 # COSC617Group1
 ## COSC617: Advanced Web Development
-### 2Group 1 Project
+
+### Members
+Martina Lampkin
+Winsum Chang
+Francesco Butts
+Donald Brown
+Nick Garcia
+Gerardo Lopez
+Samuel Makinde
