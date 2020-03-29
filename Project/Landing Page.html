@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project Activity Spot</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style type="text/css">
+	#searchheader{
+		background-color:#c3deef;
+	}
+	#nextsearch{
+		float:left;
+		padding:50px;
+	}
+	.textinput{
+		margin: 0;
+		padding: 7px 18px;
+		font-family: Arial;
+		font-size:14px;
+		border:3px solid #0076b3; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+	.searchbutton {
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 3px #007aa3; border-right:0px;
+		background: #0095ce;
+		background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+	}
+	.searchbutton:hover {
+		text-decoration: none;
+		background: #007ead;
+		background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+		background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	}
+	/* Fixes submit button height problem in Firefox */
+	.searchbutton::-moz-focus-inner {
+	  border: 0;
+	}
+	.searchclear{
+		clear:both;
+	}
+</style>
+
+
+
+
+<body>
+
+    <div class="jumbotron">
+        <h1>Welcome</h1> 
+        <p>Activities include</p> 
+      </div>
+      <div id="searchheader">
+        <form id="nextsearch" method="get" action="Landing Page.html">
+                <input type="text" class="textinput" name="q" size="21" maxlength="120" align="middle"><input type="submit" value="search" class="searchbutton">
+        </form>
+      <div class="searchclear"></div>
+      </div>
+      
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="Landing page.html">
+              <img src="lights.jpg" alt="Lights" style="width:100%">
+              <div class="caption">
+                <p>Lorem ipsum...</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="Landing page.html">
+              <img src="nature.jpg" alt="Nature" style="width:100%">
+              <div class="caption">
+                <p>Lorem ipsum...</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="Landing page.html">
+              <img src="fjords.jpg" alt="Fjords" style="width:100%">
+              <div class="caption">
+                <p>Lorem ipsum...</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>
