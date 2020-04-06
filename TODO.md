@@ -1,2 +1,2 @@
 # TODO
-[ ] Add versioning
+[ ] Add versioning to package and changelog.md
