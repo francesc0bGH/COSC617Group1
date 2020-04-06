@@ -2,6 +2,7 @@
 .env
 node_modules
 *.code-workspace
+wireframes
 
 # Godot-specific ignores
 .import/
