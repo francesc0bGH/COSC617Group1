@@ -1,8 +1,8 @@
 # COSC617Group1
 ## COSC617: Advanced Web Development
 
-[Change Log](changelog.md)
-[TODO](TODO.md)
+- [Change Log](changelog.md)
+- [TODO](TODO.md)
 
 ### Wiki Pages
 [Pages](https://github.com/francesc0bGH/COSC617Group1/wiki/pages)
