@@ -34,7 +34,17 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', checkAuthenticated, (req, res) => {
+// app.get('/', checkAuthenticated, (req, res) => {
+//     res.render('index.ejs', {
+//         name: req.user.name
+//     });
+// })
+
+app.get('/', (req, res) => {
+    res.render('landing.ejs');
+})
+
+app.get('/index', checkAuthenticated, (req, res) => {
     res.render('index.ejs', {
         name: req.user.name
     });
@@ -45,7 +55,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login', checkNotAuthenticated, passport.authenticate('local',{
-    successRedirect: '/',
+    successRedirect: '/index',
     failureRedirect: '/login',
     failureFlash: true
 }))
@@ -86,7 +96,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/')
+        return res.redirect('/index')
     }
     next();
 }
