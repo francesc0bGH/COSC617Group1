@@ -19,7 +19,7 @@
 - Samuel Makinde
 
 
-## userauth branch
+## Installation
 You'll need to copy the .env-boilerplate file to .env and add some secret to SESSION_SECRET.
 
 For instance:

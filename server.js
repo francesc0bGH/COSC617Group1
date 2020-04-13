@@ -19,7 +19,7 @@ initializePassport(
 );
 
 const users = []
-
+const companyname = 'AllFit'
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
@@ -81,17 +81,41 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     console.log(users);
 })
 
+// Start Group Session: April 12
+
 app.get('/userhome', checkAuthenticated, (req, res) => {
     res.render('userhome.ejs', {
-        name: req.user.name
+        name: req.user.name,
+        cname: companyname
     });
 }) 
 
 app.get('/editor', checkAuthenticated, (req, res) => {
     res.render('editor.ejs', {
-        name: req.user.name
+        name: req.user.name,
+        cname: companyname
     });
 }) 
+
+app.get('/meetup', checkAuthenticated, (req, res) => {
+    res.render('editor.ejs', {
+        name: req.user.name,
+        page: 'Meetup',
+        cname: companyname
+    });
+}) 
+
+app.get('/blog', checkAuthenticated, (req, res) => {
+    res.render('editor.ejs', {
+        name: req.user.name,
+        page: 'Blog',
+        cname: companyname
+    });
+}) 
+
+// End Group Session: April 12
+
+
 
 app.delete('/logout', (req, res) => {
     req.logOut()
