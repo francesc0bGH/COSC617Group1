@@ -81,6 +81,18 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     console.log(users);
 })
 
+app.get('/userhome', checkAuthenticated, (req, res) => {
+    res.render('userhome.ejs', {
+        name: req.user.name
+    });
+}) 
+
+app.get('/editor', checkAuthenticated, (req, res) => {
+    res.render('editor.ejs', {
+        name: req.user.name
+    });
+}) 
+
 app.delete('/logout', (req, res) => {
     req.logOut()
     res.redirect('/login')
