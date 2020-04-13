@@ -19,7 +19,7 @@ initializePassport(
 );
 
 const users = []
-const companyname = 'AllFit'
+const companyname = 'Total Sports'
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
