@@ -10,6 +10,11 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
+//start new code block 1
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+const connectEnsureLogin = require('connect-ensure-login');
+//end new code block 1
 
 const initializePassport = require('./passport-config')
 initializePassport(
@@ -17,6 +22,26 @@ initializePassport(
     email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)
 );
+
+//start new code block 2
+mongoose.connect('mongodb://localhost/MyDatabase', 
+  { useNewUrlParser: true, useUnifiedTopology: true });
+
+const Schema = mongoose.Schema;
+const UserDetail = new Schema({
+  username: String,
+  password: String,
+  //id: Int32Array //this crashes the whole server for some reason
+});
+
+UserDetail.plugin(passportLocalMongoose);
+const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+
+passport.use(UserDetails.createStrategy());
+
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser()); 
+//end new code block 2
 
 const users = []
 const companyname = 'Total Sports'
@@ -62,7 +87,9 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local',{
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
-})
+}, (req, res) => res.sendFile('html/login.html', 
+    {root: __dirname})
+) //some new proposed changes to function, have not been tested
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
