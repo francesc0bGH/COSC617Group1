@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Welcome</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Hi, <%= name %>!</h1>
+    <form action="/logout?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-info">Log Out</button>
+    </form>
+
+    <div class="form-signin">
+        <h3>Test Controls</h3>
+        <p>The login and register buttons are here to verify that access to the
+            <b>/login</b> and <b>/register</b> endpoints is blocked if a user is logged in.
+            This text and these buttons can be deleted in the final version of the site.</p>
+        <a href="/login" class="btn btn-info">Login</a>
+        <a href="/register" class="btn btn-info">Register</a>
+    </div>
+
+</body>
+
+</html>
