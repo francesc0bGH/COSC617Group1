@@ -24,7 +24,7 @@ initializePassport(
 );
 
 //start new code block 2
-mongoose.connect('mongodb://localhost/MyDatabase', 
+mongoose.connect('mongodb://localhost/userdb', 
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Schema = mongoose.Schema;
@@ -87,9 +87,7 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local',{
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
-}, (req, res) => res.sendFile('html/login.html', 
-    {root: __dirname})
-) //some new proposed changes to function, have not been tested
+})
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {

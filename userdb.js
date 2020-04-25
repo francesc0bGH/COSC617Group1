@@ -15,11 +15,11 @@ let mongoConnectOptions = { //  Prevent "Server Discovery and Monitoring engine 
     
   
     let inputCustomers = [
-      { name: 'Nate', address: '123 Main Street'},
-      { name: 'James', address: '1834 South Charles'},
-      { name: 'Tupac', address: '222 Thugs Mansion Drive'},
-      { name: 'Fred', address: '5 Cavan Green Circle'},
-      { name: 'Cassie', address: '56 Riverside Avenue'}
+      { name: 'Nate', address: 'nate@gmail.com'},
+      { name: 'James', address: 'james@gmail.com'},
+      { name: 'Tupac', address: 'thugs@gmail.com'},
+      { name: 'Fred', address: 'green@gmail.com'},
+      { name: 'Cassie', address: 'rivers@gmail.com'}
     ];
 
     let nameSort = {name: 1};
@@ -63,7 +63,7 @@ let mongoConnectOptions = { //  Prevent "Server Discovery and Monitoring engine 
 
     console.log(dbo.collection('users'));
     
-    dbo.collection('users').insertOne({name:'Robin Hood', username:'robinofloxley',password:'Rise, and Rise Again'}, function(err,res){
+    dbo.collection('users').insertOne({name:'Robin Hood', username:'robinofloxley@gmail.com',password:'Rise, and Rise Again'}, function(err,res){
         if(err){
             throw err;
         }
