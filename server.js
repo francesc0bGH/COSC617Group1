@@ -29,9 +29,10 @@ mongoose.connect('mongodb://localhost/userdb',
 
 const Schema = mongoose.Schema;
 const UserDetail = new Schema({
-  username: String,
-  password: String,
-  //id: Int32Array //this crashes the whole server for some reason
+  id:String,
+  name: String,
+  email: String,
+  password: String
 });
 
 UserDetail.plugin(passportLocalMongoose);
@@ -97,7 +98,13 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword
-        })
+        })//how do i put this data in userdb
+        UserDetails.register(
+            {id: Date.now().toString()},
+            {name: req.body.name},
+            {email: req.body.email},
+            {password: hashedPassword}
+        )
         res.redirect('/login')
 
     } catch {
