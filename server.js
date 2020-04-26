@@ -24,11 +24,17 @@ initializePassport(
 );
 
 //start new code block 2
+mongoose.set('useCreateIndex', true);
+
 mongoose.connect('mongodb://localhost/userdb', 
   { useNewUrlParser: true, useUnifiedTopology: true });
 
-const Schema = mongoose.Schema;
-const UserDetail = new Schema({
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+var Schema = mongoose.Schema;
+var UserDetail = new Schema({
   id:String,
   name: String,
   email: String,
@@ -36,12 +42,16 @@ const UserDetail = new Schema({
 });
 
 UserDetail.plugin(passportLocalMongoose);
-const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+var UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
 
-passport.use(UserDetails.createStrategy());
+/*var user_instance = new UserDetails({name: 'jeb'});
+user_instance.save(function (err){
+    if(err) return (err);
+});*/
+//passport.use(UserDetails.createStrategy());
 
-passport.serializeUser(UserDetails.serializeUser());
-passport.deserializeUser(UserDetails.deserializeUser()); 
+//passport.serializeUser(UserDetails.serializeUser());
+//passport.deserializeUser(UserDetails.deserializeUser()); 
 //end new code block 2
 
 const users = []
@@ -99,12 +109,21 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             email: req.body.email,
             password: hashedPassword
         })//how do i put this data in userdb
-        UserDetails.register(
-            {id: Date.now().toString()},
-            {name: req.body.name},
-            {email: req.body.email},
-            {password: hashedPassword}
-        )
+
+        var user_instance = new UserDetails(
+            {name: 'blart',
+            }
+        );
+
+        user_instance.save(function (err){
+            if(err){
+                console.log('It didnt work');
+                console.log(err);
+                return (err);
+            } 
+            console.log('Here');
+        });
+        
         res.redirect('/login')
 
     } catch {
