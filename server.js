@@ -35,14 +35,16 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var Schema = mongoose.Schema;
 var UserDetail = new Schema({
-  id:String,
-  name: String,
-  email: String,
-  password: String
+  name: {type: String, index: false},
+  email: {type: String, sparse: true, index:true},
+  password: {type: String, index: false}
 });
+UserDetail.set('autoIndex', false);
 
 UserDetail.plugin(passportLocalMongoose);
 var UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+
+
 
 /*var user_instance = new UserDetails({name: 'jeb'});
 user_instance.save(function (err){
@@ -111,7 +113,10 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
         })//how do i put this data in userdb
 
         var user_instance = new UserDetails(
-            {name: 'blart',
+            {
+             name: req.body.name,
+             email: req.body.email,
+             password: hashedPassword
             }
         );
 
