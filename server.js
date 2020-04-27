@@ -39,7 +39,7 @@ var UserDetail = new Schema({
   email: {type: String, sparse: true, index:true},
   password: {type: String, index: false}
 });
-UserDetail.set('autoIndex', false);
+UserDetail.set('autoIndex', true);
 
 UserDetail.plugin(passportLocalMongoose);
 var UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
@@ -119,14 +119,15 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
              password: hashedPassword
             }
         );
-
+        
+        
         user_instance.save(function (err){
             if(err){
-                console.log('It didnt work');
+                //console.log('It didnt work');
                 console.log(err);
                 return (err);
             } 
-            console.log('Here');
+            //console.log('Here');
         });
         
         res.redirect('/login')
