@@ -12,8 +12,6 @@ const methodOverride = require('method-override');
 
 //start new code block 1
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-const connectEnsureLogin = require('connect-ensure-login');
 //end new code block 1
 
 const initializePassport = require('./passport-config')
@@ -26,34 +24,16 @@ initializePassport(
 //start new code block 2
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect('mongodb://localhost/userdb', 
+mongoose.connect('mongodb://localhost/totalsports', 
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//UserDetail.set('autoIndex', true);
 
-var Schema = mongoose.Schema;
-var UserDetail = new Schema({
-  name: {type: String, index: false},
-  email: {type: String, sparse: true, index:true},
-  password: {type: String, index: false}
-});
-UserDetail.set('autoIndex', true);
+var UserDetails = require('./models/userModel.js');
 
-UserDetail.plugin(passportLocalMongoose);
-var UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
-
-
-
-/*var user_instance = new UserDetails({name: 'jeb'});
-user_instance.save(function (err){
-    if(err) return (err);
-});*/
-//passport.use(UserDetails.createStrategy());
-
-//passport.serializeUser(UserDetails.serializeUser());
-//passport.deserializeUser(UserDetails.deserializeUser()); 
 //end new code block 2
 
 const users = []
@@ -120,7 +100,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             }
         );
         
-        
+
         user_instance.save(function (err){
             if(err){
                 //console.log('It didnt work');
