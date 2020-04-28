@@ -52,7 +52,7 @@
       $(document).ready(function(){
           var fruitsArray = ["Soccer Blog 1", "Rock Climbing", "Soccer blog 2", "archery", "Snowboarding"];
           $.each(fruitsArray, function(index, value){
-              $("#myBlogs").append('<li>' +index + ": " + value + '</li>');
+              $("#myBlogs").append('<li>' +index + ": " + value + '<button type="submit" class="cancel">' + "x" + '</button>' + '</li>');
           });
       });
   </script> 
