@@ -8,6 +8,7 @@
 
 - [ ] Add versioning to package and changelog.md
 - [ ] Include info on adding variables to .ejs files.
+- [ ] Include a nodemailer for contact us form
 
 ### Members
 - Martina Lampkin
