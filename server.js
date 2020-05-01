@@ -32,12 +32,15 @@ mongoose.connect("mongodb+srv://dbUser:password1987@allfit-m1aeh.mongodb.net/tes
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
-db.connect;
+db.once('open', () => {
+    console.log('Db connection successfully established');
+});
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //UserDetail.set('autoIndex', true);
 
 var UserDetails = require('./models/userModel.js');
 var BlogDetails = require('./models/blogModel.js');
+var MeetupDetails = require('./models/meetupModel.js');
 
 //end new code block 2
 
@@ -147,12 +150,37 @@ app.post('/editor', checkAuthenticated, (req, res) => {
 }) 
 
 app.get('/meetup', checkAuthenticated, (req, res) => {
-    res.render('editor.ejs', {
+    res.render('event.ejs', {
         name: req.user.name,
         page: 'Meetup',
         cname: companyname
     });
 }) 
+
+app.post('/submittedEvent', function (req, res) {
+    var eventname = req.body.ename;
+    var location = req.body.location;
+    var description = req.body.description;
+    var keywords = req.body.keywords;
+    var start = req.body.start;
+    var end = req.body.end;
+
+    var data = {
+        "eventname": eventname,
+        "location": location,
+        "description": description,
+        "keywords": keywords,
+        "start": start,
+        "end": end
+    }
+
+    db.collection('eventDetails').insertOne(data, function(err, collection) {
+        if(err) throw err;
+        console.log("Record inserted successfully");
+    });
+
+    return res.redirect('userhome');
+})
 
 app.get('/blog', checkAuthenticated, (req, res) => {
     res.render('editor.ejs', {
