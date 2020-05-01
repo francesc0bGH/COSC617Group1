@@ -104,7 +104,6 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
              password: hashedPassword
             }
         );
-        
 
         user_instance.save(function (err){
             if(err){
