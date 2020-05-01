@@ -9,6 +9,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const router = express.Router();
 
 //start new code block 1
 const mongoose = require('mongoose');
@@ -33,6 +34,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //UserDetail.set('autoIndex', true);
 
 var UserDetails = require('./models/userModel.js');
+var BlogDetails = require('./models/blogModel.js');
 
 //end new code block 2
 
@@ -43,7 +45,7 @@ app.set('view-engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
 app.use(flash());
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: 'hi',//process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -131,6 +133,13 @@ app.get('/editor', checkAuthenticated, (req, res) => {
     res.render('editor.ejs', {
         name: req.user.name,
         cname: companyname
+    });
+}) 
+
+app.post('/editor', checkAuthenticated, (req, res) => {
+    res.render('editor.ejs', {
+        name: req.user.name,
+        
     });
 }) 
 

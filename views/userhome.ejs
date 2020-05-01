@@ -60,14 +60,21 @@
             <div class="row">
               <div class="col-lg-6">
                   <div class="blogContainer">
-                        <a id="add" href="/blog">Add a blog</a>
+                        <a id="add" href="/editor.ejs">Add a blog</a>
                         <h1>Blog List</h1>
-                        <ul id = "myBlogs"></ul>
+                        <ul id = "myBlogs">
+                          <% blogs.forEach( function(blog) {
+                            if (blog.username === loggedinusername){ 
+                            %>
+                          <li><%= blog.title %></li>
+                          <% }}) %>
+
+                        </ul>
                   </div>
               </div>
               <div class="col-lg-6"> 
                 <div class="meetupContainer">
-                    <a id="add" href="/meetup">Add a meetup</a>
+                    <a id="add" href="#">Add a meetup</a>
                     <h1>Meetup List</h1>
                     <ol id = "myMeetups"></ol>
               </div>  
