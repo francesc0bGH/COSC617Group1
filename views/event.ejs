@@ -18,7 +18,7 @@
     <br/><br/><br/>
     <div class="popup" id="eventForm">
         <div class="text-centered">
-            <form class="form-container" name="eventForm" method="POST">
+            <form class="form-container" name="eventForm" action="/submittedEvent" method="POST">
                 <table class="table table-hover">
                     <h3>Create an Event</h3>
                     <tbody>
@@ -54,7 +54,8 @@
                 <div class="row">
                     <button class="button button3" type="button" value="Cancel" onclick="close_button()">Cancel</button>
                     <button class="button button2" type="reset" value="Reset">Reset</button>
-                    <button class="button button1" type="button" value="Submit" onclick="testForm(); return false">Submit</button>
+                    <button class="button button1" type="submit" value="Submit">Submit</button>
+                    <!-- onclick="testForm(); return false -->
                 </div>
             </form>
         </div>
@@ -70,25 +71,25 @@
             document.getElementById("eventForm").style.display = "none";
         }
 
-        function testForm() {
-            var eventname = document.eventForm.ename.value;
-            var eventLoc = document.eventForm.location.value;
-            var eventDesc = document.eventForm.description.value;
-            var eventKey = document.eventForm.keywords.value;
-            var eventStart = document.eventForm.start.value;
-            var eventEnd = document.eventForm.end.value;
-            var x = document.createElement("div");
+        // function testForm() {
+        //     var eventname = document.eventForm.ename.value;
+        //     var eventLoc = document.eventForm.location.value;
+        //     var eventDesc = document.eventForm.description.value;
+        //     var eventKey = document.eventForm.keywords.value;
+        //     var eventStart = document.eventForm.start.value;
+        //     var eventEnd = document.eventForm.end.value;
+        //     var x = document.createElement("div");
 
-            if(!eventname || !eventLoc || !eventDesc || !eventStart || !eventEnd) {
-                alert("Enter missing info!");
-                return false;
-            }
-            x.innerHTML = "<form class='form-container'><table class='table'><center><h1>" + eventname + "</h1></center>" + 
-                        "<tbody><tr><td><span class='far fa-clock'></span></td><td> " + eventStart + " to " + eventEnd + "</td></tr>" +
-                        "<tr><td><span class='fas fa-map-marker-alt'></span></td><td> " + eventLoc + "</td></tr>" +
-                        "<tr><td colspan='2'>" + eventDesc + "</td></tr></tbody></table></form><br/><br/>";
-            document.body.appendChild(x);
-        }
+        //     if(!eventname || !eventLoc || !eventDesc || !eventStart || !eventEnd) {
+        //         alert("Enter missing info!");
+        //         return false;
+        //     }
+        //     x.innerHTML = "<form class='form-container'><table class='table'><center><h1>" + eventname + "</h1></center>" + 
+        //                 "<tbody><tr><td><span class='far fa-clock'></span></td><td> " + eventStart + " to " + eventEnd + "</td></tr>" +
+        //                 "<tr><td><span class='fas fa-map-marker-alt'></span></td><td> " + eventLoc + "</td></tr>" +
+        //                 "<tr><td colspan='2'>" + eventDesc + "</td></tr></tbody></table></form><br/><br/>";
+        //     document.body.appendChild(x);
+        // }
     </script>
 
 </body>
