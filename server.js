@@ -23,12 +23,15 @@ initializePassport(
 
 //start new code block 2
 mongoose.set('useCreateIndex', true);
-
-mongoose.connect('mongodb://localhost/totalsports', 
+//mongodb+srv://dbUser:password1987@allfit-m1aeh.mongodb.net/test
+//mongodb+srv://allfit-m1aeh.mongodb.net/test
+//"mongodb+srv://<username>:<password>@<your-cluster-url>/test?retryWrites=true&w=majority"
+//'mongo "mongodb+srv://allfit-m1aeh.mongodb.net/test"  --username dbUser'
+mongoose.connect("mongodb+srv://dbUser:password1987@allfit-m1aeh.mongodb.net/test", 
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
-
+db.connect;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //UserDetail.set('autoIndex', true);
 
