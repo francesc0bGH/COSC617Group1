@@ -92,15 +92,15 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     //code to keep from adding duplicate emails
-    var email = req.body.email;
-    var query = UserDetails.findOne({'email': email});
-    query.select('email');
-    var isDuplicate = false;
+    var email = req.body.email;                         //takes entered email
+    var query = UserDetails.findOne({'email': email});  //finds an user with same email
+    query.select('email');                              //selects the email category
+    var isDuplicate = false;                            
 
     query.exec(function(err, specialUser){
         if(err) return handleError(err);
 
-        if(specialUser != null) {
+        if(specialUser != null) {                       //if we found a user with duplicate email
             console.log('duplicate user');
             isDuplicate = true;//needs to send a message of duplicate email to user
         }
@@ -114,7 +114,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword
-        })//how do i put this data in userdb
+        })//legacy code
 
         var user_instance = new UserDetails(
             {
@@ -133,6 +133,9 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                 } 
                 console.log('User record inserted successfully');
             });
+        }
+        else{
+            //some message telling the user there is a duplicate message
         }
         
         res.redirect('/login')
