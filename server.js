@@ -91,6 +91,19 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
+    var email = req.body.email;
+    var query = UserDetails.findOne({'email': email});
+    query.select('email');
+
+    query.exec(function(err, specialUser){
+        if(err) return handleError(err);
+
+        if(specialUser != null) {
+            console.log('duplicate user');
+            res.redirect('/register'); //needs to send a message of duplicate email to user
+        }
+    })
+
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         users.push({
@@ -114,7 +127,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                 console.log(err);
                 return (err);
             } 
-            //console.log('Here');
+            console.log('User record inserted successfully');
         });
         
         res.redirect('/login')
