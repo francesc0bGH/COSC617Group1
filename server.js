@@ -86,6 +86,49 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local',{
     failureFlash: true
 }))
 
+//code winsum is trying to add but he doesn't understand passport and needs help with this
+/*app.post('/login', checkNotAuthenticated, async (req, res) =>{
+    var enteredEmail = req.body.email;
+    var enteredPassword = req.body.password;
+
+    var userEmail;
+    var userPassword;
+    var found = true;
+    UserDetails.find({ 'email': req.body.email }, 'email password', function (err, specialUser) {
+        if (err) return handleError(err);
+
+        if(specialUser == null) {                       //if we found a user with duplicate email
+            found = false;
+        }
+        else{
+            userEmail = specialUser.email;
+            userPassword = specialUser.password;
+        }
+      })
+
+      try{
+        if(found == true){
+            if(enteredEmail == userEmail){
+                if(enteredPassword == userPassword){
+                    
+                }
+                else{
+                    console.log('wrong password');
+                }
+            }
+            else{
+                console.log('wrong email');
+            }
+        }
+        else{
+            console.log('No user found');//needs to send a message of not found email
+        }
+      }
+      catch{
+        res.redirect('/login'); 
+      }
+})*/
+
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
 })
