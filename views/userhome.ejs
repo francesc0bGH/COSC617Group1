@@ -11,7 +11,14 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="main.js"></script>
-
+<style>
+  .list-group-item {
+background-color: transparent;
+border-top: 1px solid #ddd;
+border-radius: 0;
+color: #fff;
+}
+</style>
 <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
@@ -42,7 +49,11 @@
             <div class="description">
                     <h1><%= name %>, welcome to Your Home Page!</h1>
                     <p>Here you will be able to search through your blogs and add more</p>
-                    <button class="btn btn-outline-secondary btn-lg">To search through other blogs click here</button>
+                    <div class="list-group">
+                      <li class="list-group-item"><a id="add" href="/bjj">Brazilian Jiu-Jitsu</a></li>
+                      <li class="list-group-item"><a id="add" href="/rockclimbing">Rock Climbing</a></li>
+                      <li class="list-group-item"><a id="add" href="/soccer">Soccer</a></li>
+                    </div>
                     
                   </div>
 
@@ -60,7 +71,7 @@
             <div class="row">
               <div class="col-lg-6">
                   <div class="blogContainer">
-                        <a id="add" href="/editor.ejs">Add a blog</a>
+                        <a id="add" href="/editor">Add a blog</a>
                         <h1>Blog List</h1>
                         <ul id = "myBlogs">
 
