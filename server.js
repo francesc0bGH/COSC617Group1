@@ -119,48 +119,7 @@ app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authent
 })  (req,res,next);
 })
 
-//code winsum is trying to add but he doesn't understand passport and needs help with this
-/*app.post('/login', checkNotAuthenticated, async (req, res) =>{
-    var enteredEmail = req.body.email;
-    var enteredPassword = req.body.password;
 
-    var userEmail;
-    var userPassword;
-    var found = true;
-    UserDetails.find({ 'email': req.body.email }, 'email password', function (err, specialUser) {
-        if (err) return handleError(err);
-
-        if(specialUser == null) {                       //if we found a user with duplicate email
-            found = false;
-        }
-        else{
-            userEmail = specialUser.email;
-            userPassword = specialUser.password;
-        }
-      })
-
-      try{
-        if(found == true){
-            if(enteredEmail == userEmail){
-                if(enteredPassword == userPassword){
-                    
-                }
-                else{
-                    console.log('wrong password');
-                }
-            }
-            else{
-                console.log('wrong email');
-            }
-        }
-        else{
-            console.log('No user found');//needs to send a message of not found email
-        }
-      }
-      catch{
-        res.redirect('/login'); 
-      }
-})*/
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
@@ -282,6 +241,49 @@ app.post('/submittedEvent', function (req, res) {
     db.collection('eventDetails').insertOne(data, function(err, collection) {
         if(err) throw err;
         console.log("Record inserted successfully");
+    });
+
+    /*var meetup_instance = new MeetupDetails(
+        {
+            location: req.body.location,
+            ename: req.body.ename,
+            description: req.body.description,
+            keywords: req.body.sports,
+            start = req.body.start,
+            end = req.body.end,
+            email = req.body.email
+        }
+    );
+
+    meetup_instance.save(function (err){
+        if(err){
+            //console.log('It didnt work');
+            console.log(err);
+            return (err);
+        } 
+        console.log('Blog inserted successfully');
+    });*/
+
+    return res.redirect('userhome');
+})
+
+app.post('/submittedBlog', function(req, res){
+    var blog_instance = new BlogDetails(
+        {
+         title: req.body.title,
+         location: req.body.location,
+         description: req.body.description,
+         activity: req.body.activity
+        }
+    );
+
+    blog_instance.save(function (err){
+        if(err){
+            //console.log('It didnt work');
+            console.log(err);
+            return (err);
+        } 
+        console.log('Blog inserted successfully');
     });
 
     return res.redirect('userhome');

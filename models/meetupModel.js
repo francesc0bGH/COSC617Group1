@@ -8,7 +8,8 @@ var MeetupDetail = new Schema({
   description: {type: String, index: false},
   keywords: {type: String, index: false},
   start: {type: String, index: false},
-  end: {type: String, index: false}
+  end: {type: String, index: false},
+  email: {type: String, index: false}
 });
 
 module.exports = mongoose.model('meetupInfo', MeetupDetail);
