@@ -11,14 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="main.js"></script>
-<style>
-  .list-group-item {
-background-color: transparent;
-border-top: 1px solid #ddd;
-border-radius: 0;
-color: #fff;
-}
-</style>
+
 <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
@@ -37,7 +30,7 @@ color: #fff;
               <a class="nav-link" href="#">Contact</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="/index">Sign Out</a>
+                    <a class="nav-link" href="/index">Sign In</a>
             </li>
           </ul>
         </div>
@@ -47,33 +40,27 @@ color: #fff;
     <header class="page-header header container-fluid">
             <div class="overlay"></div>
             <div class="description">
-                    <h1><%= name %>, welcome to Your Home Page!</h1>
-                    <p>Here you will be able to search through your blogs and add more</p>
-                    <div class="list-group">
-                      <li class="list-group-item"><a id="add" href="/bjj">Brazilian Jiu-Jitsu</a></li>
-                      <li class="list-group-item"><a id="add" href="/rockclimbing">Rock Climbing</a></li>
-                      <li class="list-group-item"><a id="add" href="/soccer">Soccer</a></li>
-                    </div>
-                    
+                
                   </div>
 
                   
     </header>
     <script>
       $(document).ready(function(){
-          var fruitsArray = ["Soccer Blog 1", "Rock Climbing", "Soccer blog 2", "archery", "Snowboarding"];
+          var fruitsArray = ["Rock Blog 1", "Rock blog 2"];
           $.each(fruitsArray, function(index, value){
-              $("#myBlogs").append('<li>' +index + ": " + value + '</li>');
+              $("#rockBlogs").append('<li>' +index + ": " + value + '</li>');
           });
       });
   </script> 
+    
     <div class="container features">
             <div class="row">
               <div class="col-lg-6">
                   <div class="blogContainer">
                         <a id="add" href="/editor">Add a blog</a>
-                        <h1>Blog List</h1>
-                        <ul id = "myBlogs">
+                        <h1>Rock Blog List</h1>
+                        <ul id = "rockBlogs">
 
                         </ul>
                   </div>
@@ -81,9 +68,29 @@ color: #fff;
               <div class="col-lg-6"> 
                 <div class="meetupContainer">
                     <a id="add" href="/meetup">Add a meetup</a>
-                    <h1>Meetup List</h1>
-                    
-                    <ol id = "myMeetups"></ol>
+                    <h1>Rock Climbing Meetup List</h1>
+                    <ol id = "rockMeetup"></ol>
+                    <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
+                        <% for (var i = 0; i < ename.length; i++) { %>
+                        <table id="t02" class="table table-sm">
+                          <tr>
+                            <th colspan="2"><%= ename[i].eventname %></th>
+                          </tr>
+                          <tr>
+                            <td><label for="location">Location</label></td>
+                            <td><%= ename[i].location %></td>
+                          </tr>
+                          <tr>
+                            <td><label for="start">Start</label></td>
+                            <td><%= ename[i].start %></td>
+                          </tr>
+                          <tr>
+                            <td><label for="end">End</label></td>
+                            <td><%= ename[i].end %></td>
+                          </tr>
+                        </table></br>
+                        <% }; %>
+                      </div>
               </div>  
               </div>
             </div> 
@@ -100,9 +107,6 @@ color: #fff;
             </div>
             <input type="submit" class="btn btn-secondary btn-block" value="Send" name="">
           </div>
-
-          
-    
 </body>
 
 <footer class="page-footer">

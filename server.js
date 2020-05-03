@@ -237,6 +237,7 @@ app.get('/userhome', checkAuthenticated, (req, res) => {
 }) 
 
 app.get('/editor', checkAuthenticated, (req, res) => {
+
     res.render('editor.ejs', {
         name: req.user.name,
         cname: companyname
@@ -254,7 +255,8 @@ app.get('/meetup', checkAuthenticated, (req, res) => {
     res.render('event.ejs', {
         name: req.user.name,
         page: 'Meetup',
-        cname: companyname
+        cname: companyname,
+        email: req.user.email
     });
 }) 
 
@@ -262,9 +264,10 @@ app.post('/submittedEvent', function (req, res) {
     var eventname = req.body.ename;
     var location = req.body.location;
     var description = req.body.description;
-    var keywords = req.body.keywords;
+    var keywords = req.body.sports;
     var start = req.body.start;
     var end = req.body.end;
+    var createdByEmail = req.body.email;
 
     var data = {
         "eventname": eventname,
@@ -272,7 +275,8 @@ app.post('/submittedEvent', function (req, res) {
         "description": description,
         "keywords": keywords,
         "start": start,
-        "end": end
+        "end": end,
+        "createdBy": createdByEmail
     }
     
     db.collection('eventDetails').insertOne(data, function(err, collection) {
@@ -313,7 +317,41 @@ app.get('/bjj', checkAuthenticated, (req, res) => {
 }) 
 
 // End Group Session: April 12
+app.get('/publicSoccerView', (req, res) => {
+    var query = { keywords: "Soccer" };
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('publicSoccerView.ejs', {
+            cname: companyname,
+            ename: result
+        });
+        // db.close();
+    })
+})
 
+app.get('/publicRockClimbingView', (req, res) => {
+    var query = { keywords: "Rock Climbing" };
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('publicRockClimbingView.ejs', {
+            cname: companyname,
+            ename: result
+        });
+        // db.close();
+    })
+})
+
+app.get('/publicBJJView', (req, res) => {
+    var query = { keywords: "Brazilian Jiu-Jitsu" };
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('publicBJJView.ejs', {
+            cname: companyname,
+            ename: result
+        });
+        // db.close();
+    })
+})
 
 
 app.delete('/logout', (req, res) => {

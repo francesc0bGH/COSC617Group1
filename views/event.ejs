@@ -38,16 +38,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="keywords">Keywords</label></td>
-                            <td><input type="text" placeholder="Type and/or select keywords" name="keywords"></td>
+                            <td><label for="keywords">Sport</label></td>
+                            <td><select name="sports" required>
+                                <option value="" disabled selected hidden>Pick the Sport</option>
+                                <option value="Brazilian Jiu-Jitsu">Brazilian Jiu-Jitsu</option>
+                                <option value="Rock Climbing">Rock Climbing</option>
+                                <option value="Soccer">Soccer</option>
+
+                                </datalist>
+                            </td>
                         </tr>
                         <tr>
                             <td><label for="start">Start</label></td>
-                            <td><input type="datetime-local" name="start"></td>
+                            <td><input type="datetime-local" name="start" required></td>
                         </tr>
                         <tr>
                             <td><label for="end">End</label></td>
-                            <td><input type="datetime-local" name="end"></td>
+                            <td><input type="datetime-local" name="end" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="createdBy">CreatedBy</label></td>
+                            <td><input type="text" name="email" value="<%= email %>" readonly></td>
                         </tr>
                     </tbody>
                 </table>
