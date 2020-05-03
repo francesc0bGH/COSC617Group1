@@ -9,7 +9,9 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+//const expressLayouts = require('express-ejs-layouts');
 const router = express.Router();
+var localStrategy = require('passport-local').Strategy;
 
 //start new code block 1
 const mongoose = require('mongoose');
@@ -48,18 +50,48 @@ const users = []
 const companyname = 'Total Sports'
 
 app.set('view-engine', 'ejs');
+//app.use(expressLayouts);
+//app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(flash());
 app.use(session({
     secret: 'hi',//process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
+passport.use(new localStrategy({usernameField: 'email'}, function(email, password, done)  {
+    UserDetails.findOne({'email': email}).then(user => {
+        if(!user){
+            return done(null, false, {message: "User doesn't exist"});
+        }
 
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+            if (err) throw err;
+
+            if (isMatch){
+                return done(null, user);
+            } else{
+                return done(null, false, {message: 'password is not correct'});
+            }
+
+
+        });
+        passport.serializeUser(function(user, done) {
+            done(null, user.id);
+          });
+          
+          passport.deserializeUser(function(id, done) {
+            UserDetails.findById(id, function(err, user) {
+              done(err, user);
+            });
+          });
+    }).catch(err => console.log('It not working'));
+}))
+    
 // app.get('/', checkAuthenticated, (req, res) => {
 //     res.render('index.ejs', {
 //         name: req.user.name
@@ -80,11 +112,12 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs');
 })
 
-app.post('/login', checkNotAuthenticated, passport.authenticate('local',{
+app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authenticate('local',{
     successRedirect: '/index',
     failureRedirect: '/login',
     failureFlash: true
-}))
+})  (req,res,next);
+})
 
 //code winsum is trying to add but he doesn't understand passport and needs help with this
 /*app.post('/login', checkNotAuthenticated, async (req, res) =>{
@@ -134,6 +167,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
+    
     //code to keep from adding duplicate emails
     var email = req.body.email;                         //takes entered email
     var query = UserDetails.findOne({'email': email});  //finds an user with same email
@@ -152,22 +186,24 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        })//legacy code
+        
 
-        var user_instance = new UserDetails(
-            {
-             name: req.body.name,
-             email: req.body.email,
-             password: hashedPassword
-            }
-        );
 
         if(isDuplicate == false){
+            users.push({
+                id: Date.now().toString(),
+                name: req.body.name,
+                email: req.body.email,
+                password: hashedPassword
+            })//legacy code
+    
+            var user_instance = new UserDetails(
+                {
+                 name: req.body.name,
+                 email: req.body.email,
+                 password: hashedPassword
+                }
+            );
             user_instance.save(function (err){
                 if(err){
                     //console.log('It didnt work');
@@ -176,12 +212,14 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                 } 
                 console.log('User record inserted successfully');
             });
+            res.redirect('/login')
         }
         else{
             //some message telling the user there is a duplicate message
+            res.redirect('/register', {messsage: 'Email already in use'});
         }
         
-        res.redirect('/login')
+        
 
     } catch {
         res.redirect('/register')
@@ -236,7 +274,7 @@ app.post('/submittedEvent', function (req, res) {
         "start": start,
         "end": end
     }
-
+    
     db.collection('eventDetails').insertOne(data, function(err, collection) {
         if(err) throw err;
         console.log("Record inserted successfully");
