@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+    <title>AllFit</title>
+    <meta charset = 'utf-8'>
+    <meta name = "viewport" contect = "width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+<nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation" >
+            
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="/index">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      
+    <header class="page-header header container-fluid">
+            <div class="overlay"></div>
+            <div class="description">
+                    <h1><%= name %>, welcome to Rock Climbing Home Page!</h1>
+                  </div>
+
+                  
+    </header>
+    <script>
+      $(document).ready(function(){
+          var fruitsArray = ["Rock Blog 1", "Rock blog 2"];
+          $.each(fruitsArray, function(index, value){
+              $("#rockBlogs").append('<li>' +index + ": " + value + '</li>');
+          });
+      });
+  </script> 
+    
+    <div class="container features">
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="blogContainer">
+                        <a id="add" href="/editor">Add a blog</a>
+                        <h1>Rock Blog List</h1>
+                        <ul id = "rockBlogs">
+
+                        </ul>
+                  </div>
+              </div>
+              <div class="col-lg-6"> 
+                <div class="meetupContainer">
+                    <a id="add" href="/meetup">Add a meetup</a>
+                    <h1>Rock Climbing Meetup List</h1>
+                    <ol id = "rockMeetup"></ol>
+              </div>  
+              </div>
+            </div> 
+            <br><br><br><br>
+            <h3 class="feature-title">Contact Admin</h3>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Name" name="">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email Address" name="email">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="4" placeholder="Leave Us a Message!"></textarea>
+            </div>
+            <input type="submit" class="btn btn-secondary btn-block" value="Send" name="">
+          </div>
+</body>
+
+<footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+            <p>You can contact our costumer support at any time of the day! We are open 24/7.</p>
+            <p>Don't forget to exercise! </p>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <p>7000 York Rd., Towson, MD, 20832
+            <br/>info@groupproject.com
+            <br/> (123)456-7890
+            <br/> (123)123-1234</p>
+          </div>
+        </div>
+        <div class="footer-copyright text-center">© 2020 Copyright: <%= cname %> Group Project</div>
+      </footer>
+</html>

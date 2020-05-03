@@ -253,6 +253,27 @@ app.get('/blog', checkAuthenticated, (req, res) => {
     });
 }) 
 
+app.get('/soccer', checkAuthenticated, (req, res) => {
+    res.render('soccer.ejs', {
+        name: req.user.name,
+        cname: companyname
+    });
+}) 
+
+app.get('/rockclimbing', checkAuthenticated, (req, res) => {
+    res.render('rockclimbing.ejs', {
+        name: req.user.name,
+        cname: companyname
+    });
+}) 
+
+app.get('/bjj', checkAuthenticated, (req, res) => {
+    res.render('bjj.ejs', {
+        name: req.user.name,
+        cname: companyname
+    });
+}) 
+
 // End Group Session: April 12
 
 
