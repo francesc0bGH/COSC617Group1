@@ -181,3 +181,12 @@ body {
     .table-wrapper-scroll-y {
     display: block;
     }
+
+.cancel{
+      margin-left: 5%;
+      display: none;
+    }
+  
+  .cancel:hover{
+    background-color: grey;
+  }
