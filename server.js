@@ -268,7 +268,7 @@ app.post('/submittedEvent', function (req, res) {
 })
 
 app.post('/submittedBlog', function(req, res){
-    var title = req.body.ename;
+    var title = req.body.title;
     var location = req.body.location;
     var description = req.body.description;
     var activity = req.body.activity;
@@ -327,7 +327,7 @@ app.post('/deleteEvent', function(req, res){
 })
 
 app.post('/deleteBlog', function(req, res){
-    var title = req.body.ename;
+    var title = req.body.title;
 
     var data = {
         'title': title,
