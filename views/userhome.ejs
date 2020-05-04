@@ -2,15 +2,17 @@
 <html lang='en'>
 
 <head>
-    <title>AllFit</title>
-    <meta charset = 'utf-8'>
-    <meta name = "viewport" contect = "width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome-free-5.6.3-web/css/all.css">
+  <title>AllFit</title>
+  <meta charset='utf-8'>
+  <meta name="viewport" contect="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="fontawesome-free-5.6.3-web/css/all.css">
 </head>
 
 <body>
@@ -61,41 +63,55 @@
     </div>
   </nav>
 
-    <header class="page-header header container-fluid">
-      <div class="overlay"></div>
-      <div class="description">
-              <h1><%= name %>, welcome to Your Home Page!</h1>
-              <p>Here you will be able to search through your blogs and add more</p>
-              <div class="list-group">
-                <li class="btn btn-outline-secondary btn-lg"><a button onclick="window.location.href ='/bjj';">Brazilian Jiu-Jitsu</button></a></li>
-                <li class="btn btn-outline-secondary btn-lg"><a button onclick="window.location.href ='/rockclimbing';">Rock Climbing</button></a></li>
-                <li class="btn btn-outline-secondary btn-lg"><a button onclick="window.location.href ='/soccer';">Soccer</button></a></li>
-                
-              </div>
-              
-            </div>
-      
-    
+  <header class="page-header header container-fluid">
+    <div class="overlay"></div>
+    <div class="description">
+      <h1><%= name %>, welcome to Your Home Page!</h1>
+      <p>Here you will be able to search through your blogs and add more</p>
+      <div class="list-group">
+        <li class="btn btn-outline-secondary btn-lg"><a button onclick="window.location.href ='/bjj';">Brazilian
+            Jiu-Jitsu</button></a></li>
+        <li class="btn btn-outline-secondary btn-lg"><a button onclick="window.location.href ='/rockclimbing';">Rock
+            Climbing</button></a></li>
+        <li class="btn btn-outline-secondary btn-lg"><a button
+            onclick="window.location.href ='/soccer';">Soccer</button></a></li>
+      </div>
+    </div>
+  </header>
 
-                  
-    </header>
-    <script>
-      $(document).ready(function(){
-          var fruitsArray = ["Soccer Blog 1", "Rock Climbing", "Soccer blog 2", "archery", "Snowboarding"];
-          $.each(fruitsArray, function(index, value){
-              $("#myBlogs").append('<li>' +index + ": " + value + '<button type="submit" class="cancel">' + '<i class="fa fa-window-close fa-fw" style="font-size:22px;">' + '</i>' + '</button>' + '</li>');
-          });
-    });
-  </script>
   <div class="container features">
     <div class="row">
       <div class="col-lg-6">
         <div class="blogContainer">
           <a id="add" href="/editor">Add a blog</a>
           <h1>Blog List</h1>
-          <ul id="myBlogs">
+          <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
+            <% for (var i = 0; i < ename.length; i++) { %>
+              <% if(typeof ename[i].title !== 'undefined' ) { %>
+            <% if(ename[i].keywords == 'Soccer' ) { %>
+            <table id="t03" class="table table-sm">
 
-          </ul>
+              <% } else if(ename[i].keywords == 'Rock Climbing') { %>
+              <table id="t02" class="table table-sm">
+
+                <% } else { %>
+                <table id="t01" class="table table-sm">
+                  <%} %>
+                  <tr>
+                    <th colspan="2"><%= ename[i].title %></th>
+                  </tr>
+                  <tr>
+                    <td><label for="location">Location</label></td>
+                    <td><%= ename[i].location %></td>
+                  </tr>
+                  <tr>
+                    <td><label for="description">Description</label></td>
+                    <td><%= ename[i].description %></td>
+                  </tr>
+                </table></br>
+                <% } %>
+                <% }; %>
+          </div>
         </div>
       </div>
       <div class="col-lg-6">
@@ -103,9 +119,9 @@
           <a id="add" href="/meetup">Add a meetup</a>
           <h1>Meetup List</h1>
 
-          <ol id="myMeetups"></ol>
           <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
             <% for (var i = 0; i < ename.length; i++) { %>
+              <% if(typeof ename[i].eventname !== 'undefined' ) { %>
             <% if(ename[i].keywords == 'Soccer' ) { %>
             <table id="t03" class="table table-sm">
 
@@ -131,23 +147,13 @@
                     <td><%= ename[i].end %></td>
                   </tr>
                 </table></br>
+                <% } %>
                 <% }; %>
           </div>
         </div>
       </div>
     </div>
     <br><br><br><br>
-    <h3 class="feature-title">Contact Admin</h3>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Name" name="">
-    </div>
-    <div class="form-group">
-      <input type="email" class="form-control" placeholder="Email Address" name="email">
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" rows="4" placeholder="Leave Us a Message!"></textarea>
-    </div>
-    <input type="submit" class="btn btn-secondary btn-block" value="Send" name="">
   </div>
 
 

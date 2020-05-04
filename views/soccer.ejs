@@ -13,21 +13,18 @@
 <script src="main.js"></script>
 
 <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <a class="navbar-brand" href="#"></a>
+    <a href="#" title="Image from clipart.email"><img
+        src="https://cdn.clipart.email/5f7ee92b08fca51c6e27838023e28d22_28-collection-of-sport-clipart-png-high-quality-free-cliparts-_406-279.png"
+        width="150px" height="70px" alt="Sports Png Clipart" /></a>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
         <div class="collapse navbar-collapse" id="main-navigation" >
             
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/userhome">Home</a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="/index">Sign Out</a>
@@ -37,7 +34,7 @@
       </nav>
 
       
-    <header class="page-header header container-fluid">
+    <header class="page-header header soccer container-fluid">
             <div class="overlay"></div>
             <div class="description">
                     <h1><%= name %>, welcome to Soccer Home Page!</h1>
@@ -45,24 +42,35 @@
 
                   
     </header>
-    <script>
-      $(document).ready(function(){
-          var fruitsArray = ["Soccer Blog 1", "Soccer blog 2"];
-          $.each(fruitsArray, function(index, value){
-              $("#soccerBlogs").append('<li>' +index + ": " + value + '</li>');
-          });
-      });
-  </script> 
-    
+
     <div class="container features">
             <div class="row">
               <div class="col-lg-6">
                   <div class="blogContainer">
                         <a id="add" href="/editor">Add a blog</a>
                         <h1>Soccer Blog List</h1>
-                        <ul id = "soccerBlogs">
-
-                        </ul>
+                        <ol id = "soccerBlogs"></ol>
+                        <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
+                          <% for (var i = 0; i < ename.length; i++) { %>
+                          <% if(typeof ename[i].title !== 'undefined' ) { %>
+            
+                          <table id="t03" class="table table-sm">
+                            <tr>
+                              <th colspan="2"><%= ename[i].title %></th>
+                            </tr>
+                            <tr>
+                              <td><label for="location">Location</label></td>
+                              <td><%= ename[i].location %></td>
+                            </tr>
+                            <tr>
+                              <td><label for="description">Description</label></td>
+                              <td><%= ename[i].description %></td>
+                            </tr>
+                          </table></br>
+                          <% } else { %>
+                          <% } %>
+                          <% }; %>
+                        </div>
                   </div>
               </div>
               <div class="col-lg-6"> 
@@ -72,6 +80,7 @@
                     <ol id = "soccerMeetups"></ol>
                     <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
                       <% for (var i = 0; i < ename.length; i++) { %>
+                      <% if(typeof ename[i].eventname !== 'undefined' ) { %>
                       <table id="t03" class="table table-sm">
                         <tr>
                           <th colspan="2"><%= ename[i].eventname %></th>
@@ -89,42 +98,48 @@
                           <td><%= ename[i].end %></td>
                         </tr>
                       </table></br>
+                      <% } %>
                       <% }; %>
                     </div>
               </div>  
               </div>
             </div> 
             <br><br><br><br>
-            <h3 class="feature-title">Contact Admin</h3>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Name" name="">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email Address" name="email">
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" rows="4" placeholder="Leave Us a Message!"></textarea>
-            </div>
-            <input type="submit" class="btn btn-secondary btn-block" value="Send" name="">
           </div>
 </body>
 
 <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-            <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-            <p>You can contact our costumer support at any time of the day! We are open 24/7.</p>
-            <p>Don't forget to exercise! </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12">
+      <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+      <p>You can contact our costumer support at any time of the day! We are open 24/7.</p>
+      <p>You must be 16 and up to create an account.</p>
+      <p>Don't forget to exercise! </p>
+    </div>
+    <div class="col-md-3  pl-4 pr-4">
+          <h3>Contact Us</h3>   
+          <a href="#"><i class="fas fa-phone"></i> +(123)456-7890</a><br>
+
+          <a href="mailto:info@groupproject.com"><i class="fas fa-envelope"></i> info@groupproject.com</a><br>
+          <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3083.3975062121076!2d-76.61483324872255!3d39.39251207939668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c80fbe909b7ee3%3A0x89405297408efe46!2sTowson%20University%20Union%20Garage!5e0!3m2!1sen!2sus!4v1588439391058!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              frameborder="0"></iframe>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-12">
-            <h6 class="text-uppercase font-weight-bold">Contact</h6>
-            <p>7000 York Rd., Towson, MD, 20832
-            <br/>info@groupproject.com
-            <br/> (123)456-7890
-            <br/> (123)123-1234</p>
-          </div>
-        </div>
-        <div class="footer-copyright text-center">© 2020 Copyright: <%= cname %> Group Project</div>
-      </footer>
+  </div>
+</div>
+</div>
+<div class="container-fluid bottom-footer pt-2">
+<div class="row">
+  <div class="col-12 text-center">
+    <p>© 2020 Copyright: Group Project</p>
+  </div>
+</div>
+</div>
+
+</footer>
+<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+<script src="bootstrap/js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

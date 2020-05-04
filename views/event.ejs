@@ -71,7 +71,7 @@
             </form>
         </div>
         <br/><br/><br/>
-        <h3>See event details below</h3>
+        <h3><a class="button" href="/userhome">Back to User HomePage</a></h3>
     </div>
     <script>
         function open_button() {
@@ -81,26 +81,6 @@
         function close_button() {
             document.getElementById("eventForm").style.display = "none";
         }
-
-        // function testForm() {
-        //     var eventname = document.eventForm.ename.value;
-        //     var eventLoc = document.eventForm.location.value;
-        //     var eventDesc = document.eventForm.description.value;
-        //     var eventKey = document.eventForm.keywords.value;
-        //     var eventStart = document.eventForm.start.value;
-        //     var eventEnd = document.eventForm.end.value;
-        //     var x = document.createElement("div");
-
-        //     if(!eventname || !eventLoc || !eventDesc || !eventStart || !eventEnd) {
-        //         alert("Enter missing info!");
-        //         return false;
-        //     }
-        //     x.innerHTML = "<form class='form-container'><table class='table'><center><h1>" + eventname + "</h1></center>" + 
-        //                 "<tbody><tr><td><span class='far fa-clock'></span></td><td> " + eventStart + " to " + eventEnd + "</td></tr>" +
-        //                 "<tr><td><span class='fas fa-map-marker-alt'></span></td><td> " + eventLoc + "</td></tr>" +
-        //                 "<tr><td colspan='2'>" + eventDesc + "</td></tr></tbody></table></form><br/><br/>";
-        //     document.body.appendChild(x);
-        // }
     </script>
 
 </body>

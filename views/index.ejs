@@ -1,34 +1,118 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang = 'en'>
 <head>
-    <meta charset="utf-8">
+    <title>AllFit</title>
+    <meta charset = 'utf-8'>
+    <meta name = "viewport" contect = "width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Welcome</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.6.3-web/css/all.css">
 </head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 
-<body class="text-center">
-    <h1 class="h3 mb-3 font-weight-normal">Hi, <%= name %>!</h1>
-    <form action="/logout?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-info">Log Out</button>
-    </form>
-
-    <!--
-    <div class="form-signin">
-        <h3>Test Controls</h3>
-        <p>The login and register buttons are here to verify that access to the
-            <b>/login</b> and <b>/register</b> endpoints is blocked if a user is logged in.
-            This text and these buttons can be deleted in the final version of the site.</p>
-        <a href="/login" class="btn btn-info">Login</a>
-        <a href="/register" class="btn btn-info">Register</a>
-        <a href="/userhome" class="btn btn-info">User Home</a>
+<div class="p-1" id="topHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-right">
+          <a class="p-1" href="tel:+1234567890"> <i class="fas fa-phone"></i> +(123)456-7890 </a>
+          <a class="p-1" href="mailto:info@groupproject.com "> <i class="info@groupproject.com"></i>info@groupproject.com</a>
+        </div>
+      </div>
     </div>
-    -->
+  </div>
+<nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="#"></a>
+        <a href="#"title="Image from clipart.email"><img src="https://cdn.clipart.email/5f7ee92b08fca51c6e27838023e28d22_28-collection-of-sport-clipart-png-high-quality-free-cliparts-_406-279.png" width="150px" height="70px" alt="Sports Png Clipart" /></a> 
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation" >
+            
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#aboutus">Sports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contactus">Contact</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="/login">Sign in</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <header class="page-header header container-fluid">
+            <div class="overlay"></div>
+            <div class="description">
+                    <h1>Welcome to Total Sports!</h1>
+                    <p>Total Sports is a website that allows you to publish blogs about a specific sport and allows you to create meet ups for people that want to play an specific sport near their homes!</p>
+                    <button class="btn btn-outline-secondary btn-lg">Tell Me More!</button>
+                    
+                  </div>        
+    </header>
+    <div class="container features" id = "aboutus">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <h3 class="feature-title"><a href="/publicBJJView">Brazilian Jiu Jitsu</a></h3>
+                <img src="/images/jitsu.jpg" class="img-fluid">
+                <p>Brazilian Jiu-Jitsu is a self-defense martial art & combat sport based on grappling, ground fighting & submission holds, focusing on the skill of controlling one’s opponent through a number of techniques that force him or her to submit via chokeholds & joint locks.</p>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <h3 class="feature-title"><a href="/publicRockClimbingView">Rock Climbing</a></h3>
+                <img src="/images/rock.jpg" class="img-fluid">
+                <p>Rock climbing is a sport in which participants climb up, down or across natural rock formations or artificial rock walls. The goal is to reach the summit of a formation or the endpoint of a usually pre-defined route without falling.</p>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">   
+                    <h3 class="feature-title"><a href="/publicSoccerView">Soccer</a></h3>
+                    <img src="/images/soccer.jpeg" class="img-fluid">
+                    <p>Soccer is a team sport played with a spherical ball between two teams of 11 players. It is played by approximately 250 million players in over 200 countries and dependencies, making it the world's most popular sport. The object of the game is to score by moving the ball beyond the goal line into the opposing goal.</p>
+             </div>
+          </div> 
+          <h1 class="Many-other"> <center>And many other sports!</center></h3>
+      </div>
+</body>
 
+<footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+        <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+        <p>You can contact our costumer support at any time of the day! We are open 24/7.</p>
+        <p>You must be 16 and up to create an account.</p>
+        <p>Don't forget to exercise! </p>
+      </div>
+      <div class="col-md-3  pl-4 pr-4">
+            <h3>Contact Us</h3>   
+            <a href="#"><i class="fas fa-phone"></i> +(123)456-7890</a><br>
+
+            <a href="mailto:info@groupproject.com"><i class="fas fa-envelope"></i> info@groupproject.com</a><br>
+            <div class="embed-responsive embed-responsive-16by9">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3083.3975062121076!2d-76.61483324872255!3d39.39251207939668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c80fbe909b7ee3%3A0x89405297408efe46!2sTowson%20University%20Union%20Garage!5e0!3m2!1sen!2sus!4v1588439391058!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                frameborder="0"></iframe>
+            </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid bottom-footer pt-2">
+  <div class="row">
+    <div class="col-12 text-center">
+      <p>© 2020 Copyright: Group Project</p>
+    </div>
+  </div>
+</div>
+
+</footer>
+<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+<script src="bootstrap/js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

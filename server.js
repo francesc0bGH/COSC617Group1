@@ -41,7 +41,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //UserDetail.set('autoIndex', true);
 
 var UserDetails = require('./models/userModel.js');
-var BlogDetails = require('./models/blogModel.js');
+var createdDetails = require('./models/blogModel.js');
 var MeetupDetails = require('./models/meetupModel.js');
 
 //end new code block 2
@@ -113,7 +113,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authenticate('local',{
-    successRedirect: '/userhome', // 20200503: changing to userhome ('/userhome')
+    successRedirect: '/userhome', // 20200503: changing to root ('/')
     failureRedirect: '/login',
     failureFlash: true
 })  (req,res,next);
@@ -191,21 +191,28 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 app.get('/userhome', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { createdBy : email }
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
-        if(err) throw err;
+    db.collection('createdDetails').find(query).toArray(function(err, result1) {
+        if(err) throw err;   
         res.render('userhome.ejs', {
             name: req.user.name,
-            cname: companyname,
-            ename: result
+            ename: result1
+    
         });
+    
     })
+   
 }) 
+
+app.get('/contactus', (req, res) => {
+    res.render('contactus.ejs');
+})
 
 app.get('/editor', checkAuthenticated, (req, res) => {
 
     res.render('editor.ejs', {
         name: req.user.name,
-        cname: companyname
+        cname: companyname,
+        email: req.user.email
     });
 }) 
 
@@ -245,11 +252,11 @@ app.post('/submittedEvent', function (req, res) {
     }
     
     var isDuplicate = false;
-    db.collection('eventDetails').findOne( data, function(err, result){
+    db.collection('createdDetails').findOne( data, function(err, result){
         if(err) throw err;
 
         if(result == null){
-            db.collection('eventDetails').insertOne(data, function(err, collection) {
+            db.collection('createdDetails').insertOne(data, function(err, collection) {
                 if(err) throw err;
                 console.log("Record inserted successfully");
             });
@@ -272,20 +279,24 @@ app.post('/submittedBlog', function(req, res){
     var location = req.body.location;
     var description = req.body.description;
     var activity = req.body.activity;
+    var createdByEmail = req.user.email;
+    
 
     var data = {
         "title": title,
         "location": location,
         "description": description,
-        "activiy": activity
+        "keywords": activity,
+        "createdBy": createdByEmail
+        
     }
     
     var isDuplicate = false;
-    db.collection('blogDetails').findOne( data, function(err, result){
+    db.collection('createdDetails').findOne( data, function(err, result){
         if(err) throw err;
 
         if(result == null){
-            db.collection('blogDetails').insertOne(data, function(err, collection) {
+            db.collection('createdDetails').insertOne(data, function(err, collection) {
                 if(err) throw err;
                 console.log("Record inserted successfully");
             });
@@ -318,7 +329,7 @@ app.post('/deleteEvent', function(req, res){
         'end': end
     }
 
-    db.collection('eventDetails').deleteOne(data, function(err, collection){
+    db.collection('createdDetails').deleteOne(data, function(err, collection){
         if(err) throw err;
         console.log("Record successfully deleted")
     })
@@ -333,7 +344,7 @@ app.post('/deleteBlog', function(req, res){
         'title': title,
     }
 
-    db.collection('blogDetails').deleteOne(data, function(err, collection){
+    db.collection('createdDetails').deleteOne(data, function(err, collection){
         if(err) throw err;
         console.log("Record successfully deleted")
     })
@@ -345,14 +356,15 @@ app.get('/blog', checkAuthenticated, (req, res) => {
     res.render('editor.ejs', {
         name: req.user.name,
         page: 'Blog',
-        cname: companyname
+        cname: companyname,
+        email: req.user.email
     });
 }) 
 
 app.get('/soccer', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { keywords : "Soccer", createdBy : email }
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('soccer.ejs', {
             name: req.user.name,
@@ -365,7 +377,7 @@ app.get('/soccer', checkAuthenticated, (req, res) => {
 app.get('/rockclimbing', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { keywords : "Rock Climbing", createdBy : email }
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         res.render('rockclimbing.ejs', {
             name: req.user.name,
             cname: companyname,
@@ -377,7 +389,7 @@ app.get('/rockclimbing', checkAuthenticated, (req, res) => {
 app.get('/bjj', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { keywords : "Brazilian Jiu-Jitsu", createdBy : email }
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         res.render('bjj.ejs', {
             name: req.user.name,
             cname: companyname,
@@ -388,8 +400,8 @@ app.get('/bjj', checkAuthenticated, (req, res) => {
 
 // End Group Session: April 12
 app.get('/publicSoccerView', (req, res) => {
-    var query = { keywords: "Soccer" };
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    var query = { keywords: "Soccer"};
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('publicSoccerView.ejs', {
             cname: companyname,
@@ -401,7 +413,7 @@ app.get('/publicSoccerView', (req, res) => {
 
 app.get('/publicRockClimbingView', (req, res) => {
     var query = { keywords: "Rock Climbing" };
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('publicRockClimbingView.ejs', {
             cname: companyname,
@@ -413,11 +425,19 @@ app.get('/publicRockClimbingView', (req, res) => {
 
 app.get('/publicBJJView', (req, res) => {
     var query = { keywords: "Brazilian Jiu-Jitsu" };
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
+    var blogQuery = { activity : "Brazilian Jiu-Jitsu" };
+    var blog;
+    db.collection('createdDetails').find(blogQuery).toArray(function(err, result) { 
+        if(err) throw err;
+        blog = result;
+    });
+
+    db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('publicBJJView.ejs', {
             cname: companyname,
-            ename: result
+            ename: result,
+            myblog: blog
         });
         // db.close();
     })
