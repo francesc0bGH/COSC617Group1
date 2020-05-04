@@ -3,6 +3,7 @@ body {
     margin: 0;
     background: #fefefe;
   }
+  /*--- navigation bar ---*/
   .navbar {
     background: lightgray;
   }

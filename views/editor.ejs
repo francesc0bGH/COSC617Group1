@@ -10,26 +10,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <form class="form-container" name="blogForm" action="/submittedBlog" method="POST">
     <div class="row">
         <div class="col-md-8">
             <h2>Title</h2>
-            <input>
+            <input name="title">
         </div>
         <div class = "col-md-4">
             <h2>Location</h2>
-            <input>
+            <input name="location">
         </div>
     </div>
     <div class="row">
         <div class = "col-md-8">
             <h3>Activity Description</h3>
-            <textarea id="Description" rows="12" cols="70" required>
-                At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+            <textarea name="description" id="Description" rows="12" cols="70" required>
             </textarea>
         </div>
          
         <div class = "col-md-4">
-            <select class="col-md-5">Activity
+            <select name="activity" class="col-md-5">Activity
                 <option></option>
                 <option>Brazilian Jiu-Jitsu</option>
                 <option>Rock Climbing</option>
@@ -38,6 +38,7 @@
         </div>
         <button type="submit" class="sub1">Submit</button>
     </div>
+  </form>
 </body>
 
 <footer class="page-footer">
