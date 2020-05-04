@@ -4,6 +4,7 @@
 node_modules
 *.code-workspace
 wireframes
+out
 
 # Godot-specific ignores
 .import/

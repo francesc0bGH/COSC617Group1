@@ -17,6 +17,8 @@ var localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 //end new code block 1
 
+app.listen(3000);
+
 const initializePassport = require('./passport-config')
 initializePassport(
     passport, 
@@ -444,4 +446,4 @@ function checkNotAuthenticated(req, res, next) {
     next();
 }
 
-app.listen(3000);
+//app.listen(3000);
