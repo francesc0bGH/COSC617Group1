@@ -431,19 +431,11 @@ app.get('/publicRockClimbingView', (req, res) => {
 
 app.get('/publicBJJView', (req, res) => {
     var query = { keywords: "Brazilian Jiu-Jitsu" };
-    var blogQuery = { activity : "Brazilian Jiu-Jitsu" };
-    var blog;
-    db.collection('createdDetails').find(blogQuery).toArray(function(err, result) { 
-        if(err) throw err;
-        blog = result;
-    });
-
     db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('publicBJJView.ejs', {
             cname: companyname,
             ename: result,
-            myblog: blog
         });
         // db.close();
     })
