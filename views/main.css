@@ -110,12 +110,12 @@ body {
     padding: 40px 0;
   }
 
-  .cancel{
+  .fa-window-close{
     margin-left: 5%;
     background-color: #fefefe;
     align-items: flex-end;
   }
 
-.cancel:hover{
+.fa-window-close:hover{
   background-color: grey;
 }
