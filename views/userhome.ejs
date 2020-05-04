@@ -95,6 +95,27 @@ color: #fff;
                     <h1>Meetup List</h1>
                     
                     <ol id = "myMeetups"></ol>
+                    <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
+                      <% for (var i = 0; i < ename.length; i++) { %>
+                      <table id="t03" class="table table-sm">
+                        <tr>
+                          <th colspan="2"><%= ename[i].eventname %></th>
+                        </tr>
+                        <tr>
+                          <td><label for="location">Location</label></td>
+                          <td><%= ename[i].location %></td>
+                        </tr>
+                        <tr>
+                          <td><label for="start">Start</label></td>
+                          <td><%= ename[i].start %></td>
+                        </tr>
+                        <tr>
+                          <td><label for="end">End</label></td>
+                          <td><%= ename[i].end %></td>
+                        </tr>
+                      </table></br>
+                      <% }; %>
+                    </div>
               </div>  
               </div>
             </div> 

@@ -189,10 +189,17 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 // Start Group Session: April 12
 
 app.get('/userhome', checkAuthenticated, (req, res) => {
-    res.render('userhome.ejs', {
-        name: req.user.name,
-        cname: companyname
-    });
+    var email = req.user.email;
+    console.log(email);
+    var query = { createdBy : email }
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('userhome.ejs', {
+            name: req.user.name,
+            cname: companyname,
+            ename: result
+        });
+    })
 }) 
 
 app.get('/editor', checkAuthenticated, (req, res) => {
