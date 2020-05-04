@@ -446,5 +446,3 @@ function checkNotAuthenticated(req, res, next) {
     }
     next();
 }
-
-//app.listen(3000);
