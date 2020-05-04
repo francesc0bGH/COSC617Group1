@@ -4,7 +4,7 @@
 
 if [ ! -d "$GITPROJECTS/COSC617Group1" ]
 then
-    git clone --single-branch --branch dev https://github.com/francesc0bGH/COSC617Group1.git
+    git clone https://github.com/francesc0bGH/COSC617Group1.git
     cd $GITPROJECTS/COSC617Group1
     npm install
     npm run devStart
