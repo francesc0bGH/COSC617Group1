@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Welcome</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body class="text-center">
+    <h5>Click on the button below to start...</h5>
+    <button onclick="open_button()">Create Event</button>
+    <br/><br/><br/>
+    <div class="popup" id="eventForm">
+        <div class="text-centered">
+            <form class="form-container" name="eventForm" action="/submittedEvent" method="POST">
+                <table class="table table-hover">
+                    <h3>Create an Event</h3>
+                    <tbody>
+                        <tr>
+                            <td><label for="ename">Event Name</label></td>
+                            <td><input type="text" placeholder="Add a short, clear name" name="ename" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="location">Location</label></td>
+                            <td><input type="text" placeholder="Include a place or address" name="location" required>
+                            </td>
+                            <td><i class="fas fa-map-marker-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <td><label for="description">Description</label></td>
+                            <td><input type="text" placeholder="Tell us what your event is about" name="description">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="keywords">Sport</label></td>
+                            <td><select name="sports" required>
+                                <option value="" disabled selected hidden>Pick the Sport</option>
+                                <option value="Brazilian Jiu-Jitsu">Brazilian Jiu-Jitsu</option>
+                                <option value="Rock Climbing">Rock Climbing</option>
+                                <option value="Soccer">Soccer</option>
+
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="start">Start</label></td>
+                            <td><input type="datetime-local" name="start" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="end">End</label></td>
+                            <td><input type="datetime-local" name="end" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="createdBy">CreatedBy</label></td>
+                            <td><input type="text" name="email" value="<%= email %>" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <button class="button button3" type="button" value="Cancel" onclick="close_button()">Cancel</button>
+                    <button class="button button2" type="reset" value="Reset">Reset</button>
+                    <button class="button button1" type="submit" value="Submit">Submit</button>
+                    <!-- onclick="testForm(); return false -->
+                </div>
+            </form>
+        </div>
+        <br/><br/><br/>
+        <h3>See event details below</h3>
+    </div>
+    <script>
+        function open_button() {
+            document.getElementById("eventForm").style.display = "block";
+        }
+
+        function close_button() {
+            document.getElementById("eventForm").style.display = "none";
+        }
+
+        // function testForm() {
+        //     var eventname = document.eventForm.ename.value;
+        //     var eventLoc = document.eventForm.location.value;
+        //     var eventDesc = document.eventForm.description.value;
+        //     var eventKey = document.eventForm.keywords.value;
+        //     var eventStart = document.eventForm.start.value;
+        //     var eventEnd = document.eventForm.end.value;
+        //     var x = document.createElement("div");
+
+        //     if(!eventname || !eventLoc || !eventDesc || !eventStart || !eventEnd) {
+        //         alert("Enter missing info!");
+        //         return false;
+        //     }
+        //     x.innerHTML = "<form class='form-container'><table class='table'><center><h1>" + eventname + "</h1></center>" + 
+        //                 "<tbody><tr><td><span class='far fa-clock'></span></td><td> " + eventStart + " to " + eventEnd + "</td></tr>" +
+        //                 "<tr><td><span class='fas fa-map-marker-alt'></span></td><td> " + eventLoc + "</td></tr>" +
+        //                 "<tr><td colspan='2'>" + eventDesc + "</td></tr></tbody></table></form><br/><br/>";
+        //     document.body.appendChild(x);
+        // }
+    </script>
+
+</body>
+
+</html>

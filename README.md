@@ -8,6 +8,12 @@
 ### Wiki Pages
 [Pages](https://github.com/francesc0bGH/COSC617Group1/wiki/pages)
 
+### ToDo
+
+- [ ] Add versioning to package and changelog.md
+- [ ] Include info on adding variables to .ejs files.
+- [ ] Include a nodemailer for contact us form
+
 ### Members
 - Martina Lampkin
 - Winsum Chang
@@ -18,7 +24,7 @@
 - Samuel Makinde
 
 
-## userauth branch
+## Installation
 You'll need to copy the .env-boilerplate file to .env and add some secret to SESSION_SECRET.
 
 For instance:
