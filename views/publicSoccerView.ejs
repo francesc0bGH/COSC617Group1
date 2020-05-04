@@ -44,22 +44,13 @@
   </nav>
 
 
-    <header class="page-header header soccer container-fluid">
-      <div class="overlay"></div>
-      <div class="description">
-      </div>
+  <header class="page-header header soccer container-fluid">
+    <div class="overlay"></div>
+    <div class="description">
+    </div>
 
 
-    </header>
-  
-  <script>
-    $(document).ready(function () {
-      var fruitsArray = ["Soccer Blog 1", "Soccer blog 2"];
-      $.each(fruitsArray, function (index, value) {
-        $("#soccerBlogs").append('<li>' + index + ": " + value + '</li>');
-      });
-    });
-  </script>
+  </header>
 
   <div class="container features">
     <div class="row">
@@ -67,8 +58,28 @@
         <div class="blogContainer">
           <a id="add" href="/editor">Add a blog</a>
           <h1>Soccer Blog List</h1>
-          <ul id="soccerBlogs">
-          </ul>
+          <ol id="soccerBlogs"></ol>
+            <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
+              <% for (var i = 0; i < ename.length; i++) { %>
+              <% if(typeof ename[i].title !== 'undefined' ) { %>
+
+              <table id="t03" class="table table-sm">
+                <tr>
+                  <th colspan="2"><%= ename[i].title %></th>
+                </tr>
+                <tr>
+                  <td><label for="location">Location</label></td>
+                  <td><%= ename[i].location %></td>
+                </tr>
+                <tr>
+                  <td><label for="description">Description</label></td>
+                  <td><%= ename[i].description %></td>
+                </tr>
+              </table></br>
+              <% } else { %>
+              <% } %>
+              <% }; %>
+            </div>
         </div>
       </div>
       <div class="col-lg-6">
@@ -78,6 +89,7 @@
           <ol id="soccerMeetups"></ol>
           <div class="text-centered table-wrapper-scroll-y my-custom-scrollbar">
             <% for (var i = 0; i < ename.length; i++) { %>
+            <% if(typeof ename[i].eventname !== 'undefined' ) { %>
             <table id="t03" class="table table-sm">
               <tr>
                 <th colspan="2"><%= ename[i].eventname %></th>
@@ -95,6 +107,7 @@
                 <td><%= ename[i].end %></td>
               </tr>
             </table></br>
+            <% } %>
             <% }; %>
           </div>
         </div>
