@@ -189,10 +189,17 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 // Start Group Session: April 12
 
 app.get('/userhome', checkAuthenticated, (req, res) => {
-    res.render('userhome.ejs', {
-        name: req.user.name,
-        cname: companyname
-    });
+    var email = req.user.email;
+    console.log(email);
+    var query = { createdBy : email }
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('userhome.ejs', {
+            name: req.user.name,
+            cname: companyname,
+            ename: result
+        });
+    })
 }) 
 
 app.get('/editor', checkAuthenticated, (req, res) => {
@@ -238,53 +245,103 @@ app.post('/submittedEvent', function (req, res) {
         "createdBy": createdByEmail
     }
     
-    db.collection('eventDetails').insertOne(data, function(err, collection) {
+    var isDuplicate = false;
+    db.collection('eventDetails').findOne( data, function(err, result){
         if(err) throw err;
-        console.log("Record inserted successfully");
-    });
 
-    /*var meetup_instance = new MeetupDetails(
-        {
-            location: req.body.location,
-            ename: req.body.ename,
-            description: req.body.description,
-            keywords: req.body.sports,
-            start = req.body.start,
-            end = req.body.end,
-            email = req.body.email
+        if(result == null){
+            db.collection('eventDetails').insertOne(data, function(err, collection) {
+                if(err) throw err;
+                console.log("Record inserted successfully");
+            });
         }
-    );
+        else{
+            isDuplicate = true;
+        }
+    })
 
-    meetup_instance.save(function (err){
-        if(err){
-            //console.log('It didnt work');
-            console.log(err);
-            return (err);
-        } 
-        console.log('Blog inserted successfully');
-    });*/
+    if(isDuplicate == true){
+        res.redirect('userhome', {messsage: 'Record already created, try again'});
+    }
+    else{
+        return res.redirect('userhome');
+    }
+})
+
+app.post('/submittedBlog', function(req, res){
+    var title = req.body.ename;
+    var location = req.body.location;
+    var description = req.body.description;
+    var activity = req.body.activity;
+    var createdByEmail = req.body.email;
+
+    var data = {
+        "title": title,
+        "location": location,
+        "description": description,
+        "activiy": activity,
+        "createdBy": createdByEmail
+    }
+    
+    var isDuplicate = false;
+    db.collection('blogDetails').findOne( data, function(err, result){
+        if(err) throw err;
+
+        if(result == null){
+            db.collection('blogDetails').insertOne(data, function(err, collection) {
+                if(err) throw err;
+                console.log("Record inserted successfully");
+            });
+        }
+        else{
+            isDuplicate = true;
+        }
+    })
+
+    if(isDuplicate == true){
+        res.redirect('userhome', {messsage: 'Record already created, try again'});
+    }
+    else{
+        return res.redirect('userhome');
+    }
+})
+
+app.post('/deleteEvent', function(req, res){
+    var eventname = req.body.ename;
+    var createdBy = req.body.email;
+    var location = req.body.location;
+    var start = req.body.start;
+    var end = req.body.end;
+
+    var data = {
+        'eventname': eventname,
+        'createdBy': createdBy,
+        'location': location,
+        'start': start,
+        'end': end
+    }
+
+    db.collection('eventDetails').deleteOne(data, function(err, collection){
+        if(err) throw err;
+        console.log("Record successfully deleted")
+    })
 
     return res.redirect('userhome');
 })
 
-app.post('/submittedBlog', function(req, res){
-    var blog_instance = new BlogDetails(
-        {
-         title: req.body.title,
-         location: req.body.location,
-         description: req.body.description,
-         activity: req.body.activity
-        }
-    );
+app.post('/deleteBlog', function(req, res){
+    var title = req.body.ename;
+    var email = req.body.email;
 
-    blog_instance.save(function (err){
-        if(err){
-            //console.log('It didnt work');
-            console.log(err);
-            return (err);
-        } 
-        console.log('Blog inserted successfully');
-    });
+    var data = {
+        'title': title,
+        'createdBy': email
+    }
+
+    db.collection('blogDetails').deleteOne(data, function(err, collection){
+        if(err) throw err;
+        console.log("Record successfully deleted")
+    })
 
     return res.redirect('userhome');
 })
