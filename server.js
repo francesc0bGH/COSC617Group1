@@ -113,7 +113,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authenticate('local',{
-    successRedirect: '/', // 20200503: changing to root ('/')
+    successRedirect: '/userhome', // 20200503: changing to root ('/')
     failureRedirect: '/login',
     failureFlash: true
 })  (req,res,next);
@@ -190,7 +190,6 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 
 app.get('/userhome', checkAuthenticated, (req, res) => {
     var email = req.user.email;
-    console.log(email);
     var query = { createdBy : email }
     db.collection('eventDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
@@ -351,24 +350,40 @@ app.get('/blog', checkAuthenticated, (req, res) => {
 }) 
 
 app.get('/soccer', checkAuthenticated, (req, res) => {
-    res.render('soccer.ejs', {
-        name: req.user.name,
-        cname: companyname
-    });
+    var email = req.user.email;
+    var query = { keywords : "Soccer", createdBy : email }
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        if(err) throw err;
+        res.render('soccer.ejs', {
+            name: req.user.name,
+            cname: companyname,
+            ename: result
+        });
+    })
 }) 
 
 app.get('/rockclimbing', checkAuthenticated, (req, res) => {
-    res.render('rockclimbing.ejs', {
-        name: req.user.name,
-        cname: companyname
-    });
+    var email = req.user.email;
+    var query = { keywords : "Rock Climbing", createdBy : email }
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        res.render('rockclimbing.ejs', {
+            name: req.user.name,
+            cname: companyname,
+            ename: result
+        });
+    })
 }) 
 
 app.get('/bjj', checkAuthenticated, (req, res) => {
-    res.render('bjj.ejs', {
-        name: req.user.name,
-        cname: companyname
-    });
+    var email = req.user.email;
+    var query = { keywords : "Brazilian Jiu-Jitsu", createdBy : email }
+    db.collection('eventDetails').find(query).toArray(function(err, result) {
+        res.render('bjj.ejs', {
+            name: req.user.name,
+            cname: companyname,
+            ename: result
+        });
+    })
 }) 
 
 // End Group Session: April 12
