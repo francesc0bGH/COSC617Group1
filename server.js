@@ -102,6 +102,12 @@ app.get('/', (req, res) => {
     res.render('landing.ejs');
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy(function(err) {
+        res.redirect('/');
+    });
+})
+
 app.get('/index', checkAuthenticated, (req, res) => {
     res.render('index.ejs', {
         name: req.user.name
@@ -425,19 +431,11 @@ app.get('/publicRockClimbingView', (req, res) => {
 
 app.get('/publicBJJView', (req, res) => {
     var query = { keywords: "Brazilian Jiu-Jitsu" };
-    var blogQuery = { activity : "Brazilian Jiu-Jitsu" };
-    var blog;
-    db.collection('createdDetails').find(blogQuery).toArray(function(err, result) { 
-        if(err) throw err;
-        blog = result;
-    });
-
     db.collection('createdDetails').find(query).toArray(function(err, result) {
         if(err) throw err;
         res.render('publicBJJView.ejs', {
             cname: companyname,
             ename: result,
-            myblog: blog
         });
         // db.close();
     })
@@ -459,7 +457,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/index')
+        return res.redirect('/')
     }
     next();
 }
