@@ -273,14 +273,12 @@ app.post('/submittedBlog', function(req, res){
     var location = req.body.location;
     var description = req.body.description;
     var activity = req.body.activity;
-    var createdByEmail = req.body.email;
 
     var data = {
         "title": title,
         "location": location,
         "description": description,
-        "activiy": activity,
-        "createdBy": createdByEmail
+        "activiy": activity
     }
     
     var isDuplicate = false;
@@ -331,11 +329,9 @@ app.post('/deleteEvent', function(req, res){
 
 app.post('/deleteBlog', function(req, res){
     var title = req.body.ename;
-    var email = req.body.email;
 
     var data = {
         'title': title,
-        'createdBy': email
     }
 
     db.collection('blogDetails').deleteOne(data, function(err, collection){
