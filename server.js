@@ -191,9 +191,8 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 app.get('/userhome', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { createdBy : email }
-    var events = [];
     db.collection('createdDetails').find(query).toArray(function(err, result1) {
-        if(err) throw err;    
+        if(err) throw err;   
         res.render('userhome.ejs', {
             name: req.user.name,
             ename: result1

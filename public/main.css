@@ -237,3 +237,18 @@ table#t03 td {
 .table-wrapper-scroll-y {
   display: block;
 }
+
+.col-md-5{
+  margin-top: 30%;
+  margin-left: 30%;
+}
+
+.row{
+  text-align: center;
+}
+
+h2, h3, .createdBy, .activity {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: white;
+}

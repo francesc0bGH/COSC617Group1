@@ -1,55 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Project Activity Spot</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="Editor.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
 </head>
+
 <body>
-  <form class="form-container" name="blogForm" action="/submittedBlog" method="POST">
-    <div class="row">
-        <div class="col-md-8">
+
+  <header class="page-header header container-fluid">
+    <div class="overlay"></div>
+    <div class="description">
+      <form class="container" name="blogForm" action="/submittedBlog" method="POST">
+        <div class="row">
+          <div class="col-md-8">
             <h2>Title</h2>
             <input name="title">
-        </div>
-        <div class = "col-md-4">
+          </div>
+          <div class="col-md-4">
             <h2>Location</h2>
             <input name="location">
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class = "col-md-8">
+        <div class="row">
+          <div class="col-md-8">
             <h3>Activity Description</h3>
             <textarea name="description" id="Description" rows="12" cols="70" required>
-            </textarea>
-        </div>
-         
-        <div class = "col-md-4">
-            <select name="activity" class="col-md-5">Activity
+                </textarea>
+          </div>
+
+          <div class="col-md-4">
+            <div>
+              <label style="position: relative; top:100px;" class="activity" for="activity">Select Activity</label>
+            </div>
+              <select name="activity" class="col-md-5">Activity
                 <option></option>
                 <option>Brazilian Jiu-Jitsu</option>
                 <option>Rock Climbing</option>
                 <option>Soccer</option>
-            </select>
+              </select>
+            
+          </div>
+        
+          <div>
+            <label class="createdBy" for="createdBy">CreatedBy</label><br>
+            <input type="text" name="email" value="<%= email %>" readonly>
+          </div>
+          <button id="button1" type="submit" class="sub1">Submit</button>
         </div>
-        <div>
-          <label for="createdBy">CreatedBy</label><br>
-          <input type="text" name="email" 
-          value="<%= email %>" readonly>
-        </div>
-        <button id="button1" type="submit" class="sub1">Submit</button>
+      </form>
     </div>
-  </form>
+  </header>
 </body>
 
 <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
         <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
         <p>You can contact our costumer support at any time of the day! We are open 24/7.</p>
         <p>Don't forget to exercise! </p>
@@ -57,11 +70,12 @@
       <div class="col-lg-4">
         <h6 class="text-uppercase font-weight-bold">Contact</h6>
         <p>7000 York Rd., Towson, MD, 20832
-        <br/>info@groupproject.com
-        <br/> (123)456-7890
-        <br/> (123)123-1234</p>
+          <br />info@groupproject.com
+          <br /> (123)456-7890
+          <br /> (123)123-1234</p>
       </div>
     </div>
     <div class="footer-copyright text-center">© 2020 Copyright: <%= cname %> Group Project</div>
-  </footer>
+</footer>
+
 </html>
