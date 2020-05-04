@@ -112,8 +112,7 @@ body {
 
   .cancel{
     margin-left: 5%;
-    background-color: #fefefe;
-    align-items: flex-end;
+    display: none;
   }
 
 .cancel:hover{
