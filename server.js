@@ -113,7 +113,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authenticate('local',{
-    successRedirect: '/userhome', // 20200503: changing to root ('/')
+    successRedirect: '/userhome', // 20200503: changing to userhome ('/userhome')
     failureRedirect: '/login',
     failureFlash: true
 })  (req,res,next);
