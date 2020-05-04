@@ -3,6 +3,7 @@ body {
     margin: 0;
     background: #fefefe;
   }
+  /*--- navigation bar ---*/
   .navbar {
     background: lightgray;
   }
@@ -22,7 +23,7 @@ body {
   }
 
   .header {
-    background-image: url('jitsu.jpg');
+    background-image: url('picture.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
