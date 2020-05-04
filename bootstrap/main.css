@@ -118,3 +118,12 @@ body {
     color: #666;
     padding: 40px 0;
   }
+
+.cancel{
+    margin-left: 5%;
+    display: none;
+  }
+
+.cancel:hover{
+  background-color: grey;
+}

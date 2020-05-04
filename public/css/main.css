@@ -110,11 +110,83 @@ body {
     padding: 40px 0;
   }
 
-.cancel{
-    margin-left: 5%;
-    display: none;
+  table#t01 {
+    border: 1px solid black;
+    width: 95%;
   }
 
-.cancel:hover{
-  background-color: grey;
-}
+  table#t01 th, td {
+   padding: 8px;
+   height: 15px;
+  }
+
+  table#t01 th {
+    background-color: #e60000;
+    color: white;
+    text-align: center;
+  }
+
+  table#t01 td {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  table#t02 {
+    border: 1px solid black;
+    width: 95%;
+  }
+
+  table#t02 th, td {
+   padding: 8px;
+   height: 15px;
+  }
+
+  table#t02 th {
+    background-color:#008ae6;
+    color: white;
+    text-align: center;
+  }
+
+  table#t02 td {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  table#t03 {
+    border: 1px solid black;
+    width: 95%;
+  }
+
+  table#t03 th, td {
+   padding: 8px;
+   height: 15px;
+  }
+
+  table#t03 th {
+    background-color: green;
+    color: white;
+    text-align: center;
+  }
+
+  table#t03 td {
+    width: 50%;
+    vertical-align: middle;
+  }
+
+  .my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+
+.cancel{
+      margin-left: 5%;
+      display: none;
+    }
+  
+  .cancel:hover{
+    background-color: grey;
+  }
