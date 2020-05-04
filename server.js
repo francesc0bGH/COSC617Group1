@@ -204,6 +204,10 @@ app.get('/userhome', checkAuthenticated, (req, res) => {
    
 }) 
 
+app.get('/contactus', (req, res) => {
+    res.render('contactus.ejs');
+})
+
 app.get('/editor', checkAuthenticated, (req, res) => {
 
     res.render('editor.ejs', {
