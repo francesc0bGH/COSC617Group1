@@ -1,13 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
-/**
- * Initializes passport functionality.
- * @constructor
- * @param {string} passport - The imported passport.
- * @param {string} getUserByEmail - The user's email address.
- * @param {string} getUserById - The user's Id.
- */
 function initialize(passport, getUserByEmail, getUserById) {
     const authenticateUser = async (email, password, done) => {
         const user = getUserByEmail(email);

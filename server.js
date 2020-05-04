@@ -17,9 +17,6 @@ var localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 //end new code block 1
 
-app.listen(3000);
-
-
 const initializePassport = require('./passport-config')
 initializePassport(
     passport, 
@@ -116,7 +113,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login', checkNotAuthenticated, (req, res, next) => { passport.authenticate('local',{
-    successRedirect: '/userhome', // 20200503: changing to userhome ('/userhome')
+    successRedirect: '/userhome', // 20200503: changing to root ('/')
     failureRedirect: '/login',
     failureFlash: true
 })  (req,res,next);
@@ -194,21 +191,25 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 app.get('/userhome', checkAuthenticated, (req, res) => {
     var email = req.user.email;
     var query = { createdBy : email }
-    db.collection('eventDetails').find(query).toArray(function(err, result) {
-        if(err) throw err;
+    var events = [];
+    db.collection('eventDetails').find(query).toArray(function(err, result1) {
+        if(err) throw err;    
         res.render('userhome.ejs', {
             name: req.user.name,
-            cname: companyname,
-            ename: result
+            ename: result1
+    
         });
+    
     })
+   
 }) 
 
 app.get('/editor', checkAuthenticated, (req, res) => {
 
     res.render('editor.ejs', {
         name: req.user.name,
-        cname: companyname
+        cname: companyname,
+        email: req.user.email
     });
 }) 
 
@@ -275,12 +276,16 @@ app.post('/submittedBlog', function(req, res){
     var location = req.body.location;
     var description = req.body.description;
     var activity = req.body.activity;
+    var createdByEmail = req.user.email;
+    
 
     var data = {
         "title": title,
         "location": location,
         "description": description,
-        "activiy": activity
+        "activiy": activity,
+        "createdBy": createdByEmail
+        
     }
     
     var isDuplicate = false;
@@ -348,7 +353,8 @@ app.get('/blog', checkAuthenticated, (req, res) => {
     res.render('editor.ejs', {
         name: req.user.name,
         page: 'Blog',
-        cname: companyname
+        cname: companyname,
+        email: req.user.email
     });
 }) 
 
@@ -446,3 +452,5 @@ function checkNotAuthenticated(req, res, next) {
     }
     next();
 }
+
+app.listen(3000);

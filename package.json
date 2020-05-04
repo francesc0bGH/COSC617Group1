@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "jsdoc": "^3.6.4",
     "nodemon": "^2.0.2"
   }
 }
