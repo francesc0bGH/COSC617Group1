@@ -102,6 +102,12 @@ app.get('/', (req, res) => {
     res.render('landing.ejs');
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy(function(err) {
+        res.redirect('/');
+    });
+})
+
 app.get('/index', checkAuthenticated, (req, res) => {
     res.render('index.ejs', {
         name: req.user.name
@@ -459,7 +465,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/index')
+        return res.redirect('/')
     }
     next();
 }
